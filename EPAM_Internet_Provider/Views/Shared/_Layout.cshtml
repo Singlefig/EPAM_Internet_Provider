@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDNet</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-fixed-top navbar-default">
+        <div class="container">
+            <div class="col-md-8">
+                <h4 class="pageTitle">@Html.ActionLink("MDNet", "Index", "Home")</h4>
+            </div>
+            <div class="col-md-1">
+                <img src="~/images/logo.png" width="32" high="32" class="img-circle" />
+            </div>
+            <div class="col-md-2">
+                @Html.ActionLink("Sign out", "SignOut", "Account")
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <!--/span-->
+            <div class="col-md-9">
+                @RenderBody()
+
+            </div>
+            @RenderPage("menu.cshtml")
+        </div>
+        <!--/row-->
+    </div>
+    <!-- Footer -->
+    @RenderPage("_footer.cshtml")
+    <!-- Footer -->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

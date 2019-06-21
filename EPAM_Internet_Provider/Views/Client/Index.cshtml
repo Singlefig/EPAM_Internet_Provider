@@ -1,0 +1,66 @@
+﻿@model EPAM_Internet_Provider.Models.UserInfo
+
+@{
+    ViewBag.Title = "ClientAccountPage";
+}
+
+<h2>ClientAccountPage</h2>
+
+<div>
+    <h4>Hello,@Html.DisplayFor(model => model.Name)</h4>
+    @Html.ActionLink("Reset password", "ResetPassword", "General")
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Add subscription", "AddSubscription", new { userId = Model.UserId })
+</p>
+@if (Model.Subscributions != null && Model.Subscributions.Count > 0)
+{
+    <table class="table">
+        <tr>
+            <th>Service Name</th>
+            <th>Rates Name</th>
+            <th>Rates Cost</th>
+            <th>ServiceBalance</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var item in Model.Subscributions)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service.ServiceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubscriptionRate.RateName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubscriptionRate.RateCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceBalance)
+            </td>
+            <td>
+                @Html.ActionLink("Charge balance", "ChargeServiceBalance", "Client")|
+                @Html.ActionLink("Choose another rate", "ChooseAnotherRate", "Client")|
+                @Html.ActionLink("Unsubscribe", "UnsubscribeFromRate", "Client")
+            </td>
+        </tr>
+        }
+    </table>
+}
+else
+{
+    <p>Subscription is empty</p>
+}
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

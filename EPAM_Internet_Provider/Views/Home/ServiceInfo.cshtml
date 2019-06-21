@@ -1,0 +1,49 @@
+﻿@model EPAM_Internet_Provider.Domain.Models.Service
+
+@{
+    ViewBag.Title = "ServiceInfo";
+}
+
+<h2>ServiceInfo</h2>
+
+<div>
+    <h4>Service</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceName)
+        </dd>
+
+    </dl>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            RateName
+        </th>
+        <th>
+            RateCost
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Rates)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RateName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RateCost)
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Back to Services List", "Services")
+</p>

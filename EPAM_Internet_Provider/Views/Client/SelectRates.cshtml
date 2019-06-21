@@ -1,0 +1,38 @@
+﻿@model IEnumerable<EPAM_Internet_Provider.Domain.Models.Rate>
+
+@{
+    ViewBag.Title = "SelectRates";
+}
+
+<h2>Select Rates</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RateName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RateCost)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RateName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RateCost)
+            </td>
+            <td>
+                @Html.ActionLink("Subscribe", "Subscribe", new { rateId = item.RateId, serviceId = ViewBag.serviceId })
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Cancel", "Index")
+</p>
