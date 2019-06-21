@@ -44,7 +44,7 @@ namespace EPAM_Internet_Provider.DAL.Dao
 
         public Task UpdateUser(User user)
         {
-//            _context.Users.AddOrUpdate(user);
+            _context.Users.AddOrUpdate(user);
             return _context.SaveChangesAsync();
         }
 
