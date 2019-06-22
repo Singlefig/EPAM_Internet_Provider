@@ -17,6 +17,9 @@ namespace EPAM_Internet_Provider.Services
         Task<ICollection<Rate>> GetRatesForService(int serviceId);
 
         Task SubscribeUser(int userUserId, int serviceId, int rateId);
+        Task<Rate> EditRateById(int rateId, string rateName, decimal rateCost);
+        Task<Subscription> FindSubscribeBySubId(int subId);
+        Task<Subscription> ChargeSubscribe(int subscriptionId,decimal balance);
     }
 
     public class RateService : IRateService
@@ -58,9 +61,23 @@ namespace EPAM_Internet_Provider.Services
                 userSubscription = new Subscription {Service = await _rateDao.GetService(serviceId)};
                 user.Subscributions.Add(userSubscription);
             }
-//            var rates = await _rateDao.GetRatesForService(serviceId);
             userSubscription.SubscriptionRate = userSubscription.Service.Rates.FirstOrDefault(i => i.RateId == rateId);
             await _userDao.UpdateUser(user);
+        }
+
+        public Task<Rate> EditRateById(int rateId, string rateName, decimal rateCost)
+        {
+            return _rateDao.EditRateById(rateId,rateName,rateCost);
+        }
+
+        public Task<Subscription> FindSubscribeBySubId(int subId)
+        {
+            return _rateDao.FindSubscribeByUserId(subId);
+        }
+
+        public Task<Subscription> ChargeSubscribe(int subscriptionId,decimal balance)
+        {
+            return _rateDao.ChargeSubscribe(subscriptionId,balance);
         }
     }
 }

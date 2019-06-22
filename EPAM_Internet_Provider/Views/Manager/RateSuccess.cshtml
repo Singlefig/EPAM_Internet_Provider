@@ -1,0 +1,33 @@
+﻿@model EPAM_Internet_Provider.Domain.Models.Rate
+
+@{
+    ViewBag.Title = "RateSuccess";
+}
+
+<h2>RateSuccess</h2>
+
+<div>
+    <h4>Rate</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RateName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RateName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RateCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RateCost)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

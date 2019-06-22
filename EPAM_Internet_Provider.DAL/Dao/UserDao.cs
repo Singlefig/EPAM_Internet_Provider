@@ -16,6 +16,8 @@ namespace EPAM_Internet_Provider.DAL.Dao
         Task<User> AddUser(User user);
         Task<User> FindUserById(int userId);
         Task UpdateUser(User user);
+        Task<IEnumerable<User>> ViewUsersList();
+        Task UnsubscribeUser(int subId);
     }
 
     public class UserDao : IUserDao
@@ -39,7 +41,6 @@ namespace EPAM_Internet_Provider.DAL.Dao
                 .Include(i=>i.Subscributions.Select(y=>y.SubscriptionRate))
                 .Include(i=>i.Subscributions.Select(y=>y.Service))
                 .SingleAsync();
-//            return _context.Users.Include(i => i.Subscributions).FirstOrDefaultAsync(a => a.UserId==userId);
         }
 
         public Task UpdateUser(User user)
@@ -50,7 +51,6 @@ namespace EPAM_Internet_Provider.DAL.Dao
 
         public Task<bool> IsEmailExist(string email)
         {
-            //            return Task.FromResult(false);
             return _context.Users.AnyAsync(a => a.Email == email);
         }
 
@@ -61,14 +61,17 @@ namespace EPAM_Internet_Provider.DAL.Dao
             return newuser;
         }
 
-        //public Task<List<Service>> GetServices()
-        //{
-        //    List<Service> services = new List<Service>();
-        //    foreach (var service in _context.Services)
-        //    {
-        //        services.Add(service);
-        //    }
-        //    return Task.FromResult(services);
-        //}
+        public async Task<IEnumerable<User>> ViewUsersList()
+        {
+            return await Task.FromResult(_context.Users.AsEnumerable());
+        }
+
+        public Task UnsubscribeUser(int subId)
+        {
+            var result = _context.Subscriptions.Find(subId);
+            _context.Subscriptions.Remove(result);
+            _context.SaveChanges();
+            return Task.FromResult(result);
+        }
     }
 }

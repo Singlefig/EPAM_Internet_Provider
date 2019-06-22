@@ -23,7 +23,7 @@
                 @Html.DisplayFor(modelItem => item.ServiceName)
             </td>
             <td>
-                @Html.ActionLink("Service Info", "ServiceInfo", new { id = item.ServiceId })
+                @Html.ActionLink("Service Info", "GetServiceInfo", new { serviceId = item.ServiceId })
             </td>
         </tr>
     }

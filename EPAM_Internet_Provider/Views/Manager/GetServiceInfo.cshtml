@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "ServiceInfo";
-    Layout = "~/Views/Shared/publicLayout.cshtml";
 }
 
 <h2>ServiceInfo</h2>
@@ -34,17 +33,20 @@
 
     @foreach (var item in Model.Rates)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.RateName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RateCost)
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RateName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RateCost)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditRateDetails", new { rateId = item.RateId})
+        </td>
+    </tr>
     }
 
 </table>
 <p>
-    @Html.ActionLink("Back to Services List", "Services")
+    @Html.ActionLink("Back to Services List", "GetServices")
 </p>

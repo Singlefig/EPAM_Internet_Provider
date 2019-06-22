@@ -17,11 +17,9 @@ namespace EPAM_Internet_Provider.DAL.Repositories
         public ProviderContext(string ProviderContext) : base(ProviderContext)
         {
         }
-        //public IDbSet<LoginModel> LoginUsers { get; set; }
         public IDbSet<User> Users { get; set; }
-//        public IDbSet<Rate> Rates { get; set; }
+        public IDbSet<Rate> Rates { get; set; }
         public IDbSet<Service> Services { get; set; }
-
-
+        public IDbSet<Subscription> Subscriptions { get; set; }
     }
 }

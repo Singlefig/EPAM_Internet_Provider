@@ -15,9 +15,11 @@ namespace EPAM_Internet_Provider.Controllers
     public class AdminController : Controller
     {
         readonly IAccountService _accountService;
-        public AdminController(IAccountService accountService)
+        private readonly IRateService _rateService;
+        public AdminController(IAccountService accountService, IRateService rateService)
         {
             _accountService = accountService;
+            _rateService = rateService;
         }
         public ActionResult Index(UserInfo userinfo)
         {
@@ -73,6 +75,66 @@ namespace EPAM_Internet_Provider.Controllers
         public ActionResult RedirectToSuccess(UserInfo userInfo)
         {
             return View(userInfo);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> ViewUserList()
+        {
+            var result = await _accountService.ViewUsersList();
+            List<UserInfo> usersInfo = new List<UserInfo>();
+            foreach (var user in result)
+            {
+                UserInfo userInfo = new UserInfo
+                {
+                    Name = user.Name,
+                    Email = user.Email,
+                    Account = user.Account,
+                    Role = user.Role,
+                    Subscributions = user.Subscributions,
+                    UserId = user.UserId
+                };
+                usersInfo.Add(userInfo);
+            }
+            return View(usersInfo);
+        }
+
+        public async Task<ActionResult> GetServices()
+        {
+            var result = await _rateService.GetAllServices();
+            return View(result);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetServiceInfo(int serviceId)
+        {
+            var result = await _rateService.GetService(serviceId);
+            return View(result);
+        }
+        [HttpGet]
+        public ActionResult EditRateDetails(int rateId)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditRateDetails(Rate rate,int rateId)
+        {
+            //ViewBag.rateName = rate.RateName;
+            //ViewBag.rateCost = rate.RateCost;
+            //ViewBag.rateId = rate.RateId;
+            var NewRate = new Rate
+            {
+                RateName = rate.RateName,
+                RateCost = rate.RateCost,
+                RateId = rateId
+            };
+            var result = _rateService.EditRateById(rate.RateId,rate.RateName,rate.RateCost);
+            return RedirectToAction("RateSuccess", NewRate);
+        }
+        [HttpGet]
+        public ActionResult RateSuccess(Rate rate)
+        {
+            return View(rate);
         }
 
         public ActionResult ResetPassword(UserInfo userInfo)

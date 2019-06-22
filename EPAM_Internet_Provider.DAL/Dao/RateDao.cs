@@ -14,12 +14,10 @@ namespace EPAM_Internet_Provider.DAL.Dao
         Task<IEnumerable<Service>> GetAllServices();
         Task<ICollection<Rate>> GetRatesForService(int serviceId);
         Task<Service> GetService(int serviceId);
-//        Task SubscribeUser(int userId, int serviceId, int rateId);
+        Task<Rate> EditRateById(int rateId,string rateName,decimal rateCost);
+        Task<Subscription> FindSubscribeByUserId(int subId);
+        Task<Subscription> ChargeSubscribe(int subscriptionId,decimal balance);
     }
-//    public Task SubscribeUser(int userId, int serviceId, int rateId)
-//    {
-//
-//    }
 
     public class RateDao: IRateDao
     {
@@ -46,5 +44,26 @@ namespace EPAM_Internet_Provider.DAL.Dao
             return Task.FromResult(_context.Services.AsEnumerable());
         }
 
+        public Task<Rate> EditRateById(int rateId, string rateName, decimal rateCost)
+        {
+            var rate = _context.Rates.Find(rateId);
+            rate.RateName = rateName;
+            rate.RateCost = rateCost;
+            _context.SaveChanges();
+            return Task.FromResult(rate);
+        }
+
+        public Task<Subscription> FindSubscribeByUserId(int subId)
+        {
+            return Task.FromResult(_context.Subscriptions.Find(subId));
+        }
+
+        public async Task<Subscription> ChargeSubscribe(int subscriptionId,decimal balance)
+        {
+            var result = await FindSubscribeByUserId(subscriptionId);
+            result.ServiceBalance += balance;
+            _context.SaveChanges();
+            return await Task.FromResult(result);
+        }
     }
 }

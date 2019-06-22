@@ -22,7 +22,7 @@ namespace EPAM_Internet_Provider.Controllers
         private readonly IRateService _rateService;
         private readonly IAccountService _accountService;
 
-        public ClientController(IAccountService userService,IRateService rateService)
+        public ClientController(IAccountService userService, IRateService rateService)
         {
             _rateService = rateService;
             _accountService = userService;
@@ -36,7 +36,7 @@ namespace EPAM_Internet_Provider.Controllers
             //                string currentUserName = WebSecurity.CurrentUserName;
             //            }
             int userId = (int)HttpContext.Session["UserId"];
-            var user=await _accountService.FindUserById(userId);
+            var user = await _accountService.FindUserById(userId);
             var userInfo = new UserInfo
             {
                 UserId = user.UserId,
@@ -54,16 +54,16 @@ namespace EPAM_Internet_Provider.Controllers
         public async Task<ActionResult> AddSubscription()
         {
             var result = await _rateService.GetAllServices();
-//            var info = new AddSubscriptionInfo
-//            {
-//                UserId = userId,
-//                AvilableServices = result
-//            };
+            //            var info = new AddSubscriptionInfo
+            //            {
+            //                UserId = userId,
+            //                AvilableServices = result
+            //            };
             return View(result);
         }
 
         [HttpGet]
-        public async Task<ActionResult>  SelectRates(int serviceId)
+        public async Task<ActionResult> SelectRates(int serviceId)
         {
             ViewBag.serviceId = serviceId;
             var result = await _rateService.GetRatesForService(serviceId);
@@ -78,90 +78,40 @@ namespace EPAM_Internet_Provider.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult ChargeServiceBalance(Service service)
+        [HttpGet]
+        public ActionResult ChargeServiceBalance(Subscription subscription)
         {
-            return View(service);
+            var sub = _rateService.FindSubscribeBySubId(subscription.SubscriptionId);
+            return View(subscription);
+        }
+        [HttpGet]
+        public ActionResult ChargeService()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ChargeService(Subscription sub)
+        {
+            var result = _rateService.ChargeSubscribe(sub.SubscriptionId, sub.ServiceBalance);
+            return RedirectToAction("Index");
         }
 
         public ActionResult ChooseAnotherRate(Service service)
         {
             return View(service);
         }
-
-        public ActionResult UnsubscribeFromRate(Service service)
+        [HttpGet]
+        public ActionResult Unsubscribe(Subscription subscription)
         {
-            return View(service);
+            return View(subscription);
         }
-        //        // GET: Client/Details/5
-        //        public ActionResult Details(int id)
-        //        {
-        //            return View();
-        //        }
-        //
-        //        // GET: Client/Create
-        //        public ActionResult Create()
-        //        {
-        //            return View();
-        //        }
-        //
-        //        // POST: Client/Create
-        //        [HttpPost]
-        //        public ActionResult Create(FormCollection collection)
-        //        {
-        //            try
-        //            {
-        //                // TODO: Add insert logic here
-        //
-        //                return RedirectToAction("Index");
-        //            }
-        //            catch
-        //            {
-        //                return View();
-        //            }
-        //        }
-        //
-        //        // GET: Client/Edit/5
-        //        public ActionResult Edit(int id)
-        //        {
-        //            return View();
-        //        }
-        //
-        //        // POST: Client/Edit/5
-        //        [HttpPost]
-        //        public ActionResult Edit(int id, FormCollection collection)
-        //        {
-        //            try
-        //            {
-        //                // TODO: Add update logic here
-        //
-        //                return RedirectToAction("Index");
-        //            }
-        //            catch
-        //            {
-        //                return View();
-        //            }
-        //        }
-        //
-        //        // GET: Client/Delete/5
-        //        public ActionResult Delete(int id)
-        //        {
-        //            return View();
-        //        }
-        //
-        //        // POST: Client/Delete/5
-        //        [HttpPost]
-        //        public ActionResult Delete(int id, FormCollection collection)
-        //        {
-        //            try
-        //            {
-        //                // TODO: Add delete logic here
-        //
-        //                return RedirectToAction("Index");
-        //            }
-        //            catch
-        //            {
-        //                return View();
-        //            }
-        //        }
+
+        [HttpPost]
+        public ActionResult Unsubscribe(int subId)
+        {
+            var result = _accountService.UnsubscribeUser(subId);
+            return RedirectToAction("Index");
+        }
     }
 }

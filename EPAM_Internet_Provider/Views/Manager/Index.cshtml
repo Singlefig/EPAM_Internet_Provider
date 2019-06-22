@@ -4,13 +4,10 @@
     ViewBag.Title = "ManagerAccountPage";
 }
 
-<h2>ManagerAccountPage</h2>
-
 <div>
-    <h4>Hello,@Html.DisplayFor(model => model.Name)</h4>
-    @Html.ActionLink("Reset password", "ResetPassword", "General");
-
-    @Html.ActionLink("Service list", "ServiceList", "General");
+    <h4>Manager Account Page</h4>
+    @Html.ActionLink("Reset password", "ResetPassword", "General")|
+    @Html.ActionLink("Service list", "GetServices", "Manager")
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -20,43 +17,8 @@
         <dd>
             @Html.DisplayFor(model => model.Email)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Account)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Account)
-        </dd>
-
     </dl>
 </div>
-@if (Model.Subscributions != null && Model.Subscributions.Count > 0)
-{
-    foreach (var item in Model.Subscributions)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Service.ServiceName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Service.Rates)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ServiceBalance)
-            </td>
-            <td>
-                @Html.ActionLink("Charge balance", "ChargeServiceBalance", "Client");
-            </td>
-            <td>
-                @Html.ActionLink("Choose another rate", "ChooseAnotherRate", "Client");
-            </td>
-            <td>
-                @Html.ActionLink("Unsubscribe", "UnsubscribeFromRate", "Client");
-            </td>
-        </tr>
-    }
-}
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>

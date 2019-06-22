@@ -209,17 +209,15 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Account\SignIn.cshtml" />
-    <Content Include="Views\Home\Support.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Manager\Index.cshtml" />
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\General\ResetPassword.cshtml" />
     <Content Include="Views\Admin\AddUserByAdminSkill.cshtml" />
     <Content Include="Views\General\ServiceList.cshtml" />
-    <Content Include="Views\General\EditRatesDetails.cshtml" />
     <Content Include="Views\Client\ChargeServiceBalance.cshtml" />
     <Content Include="Views\Client\ChooseAnotherRate.cshtml" />
-    <Content Include="Views\Client\UnsubscribeFromRate.cshtml" />
+    <Content Include="Views\Client\Unsubscribe.cshtml" />
     <Content Include="Views\Admin\RedirectToSuccess.cshtml" />
     <Content Include="Views\Home\Services.cshtml" />
     <Content Include="Views\Home\ServiceInfo.cshtml" />
@@ -229,6 +227,16 @@
     <Content Include="Views\Shared\menu.cshtml" />
     <Content Include="Views\Client\AddSubscription.cshtml" />
     <Content Include="Views\Client\SelectRates.cshtml" />
+    <Content Include="Views\Admin\ViewUserList.cshtml" />
+    <Content Include="Views\Admin\GetServices.cshtml" />
+    <Content Include="Views\Admin\GetServiceInfo.cshtml" />
+    <Content Include="Views\Admin\EditRateDetails.cshtml" />
+    <Content Include="Views\Admin\RateSuccess.cshtml" />
+    <Content Include="Views\Manager\EditRateDetails.cshtml" />
+    <Content Include="Views\Manager\GetServiceInfo.cshtml" />
+    <Content Include="Views\Manager\GetServices.cshtml" />
+    <Content Include="Views\Manager\RateSuccess.cshtml" />
+    <Content Include="Views\Client\ChargeService.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

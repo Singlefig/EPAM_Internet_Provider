@@ -49,9 +49,9 @@
                 @Html.DisplayFor(modelItem => item.ServiceBalance)
             </td>
             <td>
-                @Html.ActionLink("Charge balance", "ChargeServiceBalance", "Client")|
+                @Html.ActionLink("Charge balance", "ChargeServiceBalance", new { sub = item })|
                 @Html.ActionLink("Choose another rate", "ChooseAnotherRate", "Client")|
-                @Html.ActionLink("Unsubscribe", "UnsubscribeFromRate", "Client")
+                @Html.ActionLink("Unsubscribe", "Unsubscribe", new { subId = item.SubscriptionId})
             </td>
         </tr>
         }

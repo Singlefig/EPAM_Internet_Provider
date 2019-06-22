@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 using EPAM_Internet_Provider.DAL.Dao;
 using EPAM_Internet_Provider.Models;
 using User = EPAM_Internet_Provider.Domain.Models.User;
@@ -11,7 +13,8 @@ namespace EPAM_Internet_Provider.Services
         Task<User> FindUserByEmail(string  email);
         Task<User> FindUserById(int userId);
         Task<bool> IsEmailExist(string email);
-
+        Task<IEnumerable<User>> ViewUsersList();
+        Task UnsubscribeUser(int subId);
     }
 
     public class AccountService : IAccountService
@@ -42,22 +45,15 @@ namespace EPAM_Internet_Provider.Services
         {
             return _userDao.IsEmailExist(email);
         }
-        //        public Task<User> FindUserByEmail(string email)
-        //        {
-        //            User user;
-        //            using (ProviderContext db = new ProviderContext())
-        //            {
-        //                user = db.Users.Where(u => u.Email == loginModel.Email).Single();
-        //            }
-        //            return user;
-        //        }
 
-        //public bool CheckUser(LoginModel loginModel)
-        //{
-        //    using (ProviderContext db = new ProviderContext())
-        //    {
-        //        db.
-        //    }
-        //}
+        public Task UnsubscribeUser(int subId)
+        {
+            return _userDao.UnsubscribeUser(subId);
+        }
+
+        public async Task<IEnumerable<User>> ViewUsersList()
+        {
+            return await _userDao.ViewUsersList();
+        }
     }
 }
