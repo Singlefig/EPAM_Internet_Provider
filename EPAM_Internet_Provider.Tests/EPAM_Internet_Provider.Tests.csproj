@@ -96,7 +96,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -105,6 +104,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EPAM_Internet_Provider.DAL\EPAM_Internet_Provider.DAL.csproj">
+      <Project>{3006AB06-8926-4160-BCC8-B18CC5A1C20D}</Project>
+      <Name>EPAM_Internet_Provider.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EPAM_Internet_Provider.Domain\EPAM_Internet_Provider.Domain.csproj">
+      <Project>{BF3B1236-8161-4672-B669-8E3D937E54D6}</Project>
+      <Name>EPAM_Internet_Provider.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EPAM_Internet_Provider\EPAM_Internet_Provider.csproj">
       <Project>{646C68A5-CE9C-4149-A65F-A8B5FFCB87C4}</Project>
       <Name>EPAM_Internet_Provider</Name>
