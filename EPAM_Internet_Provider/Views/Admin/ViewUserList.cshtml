@@ -1,4 +1,5 @@
-﻿@model IEnumerable<EPAM_Internet_Provider.Models.UserInfo>
+﻿@model PagedList.IPagedList<EPAM_Internet_Provider.Models.UserInfo>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "ViewUserList";
@@ -9,45 +10,49 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UserId)
+            UserId
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Account)
+            Account
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Role)
+            Role
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Account)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Role)
-        </td>
-        <td>
-            @Html.ActionLink("Block", "BlockUser", new { userId=item.UserId }) |
-            @Html.ActionLink("Unblock", "UnblockUser", new { userId = item.UserId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Account)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+                @Html.ActionLink("Block", "BlockUser", new { userId = item.UserId }) |
+                @Html.ActionLink("Unblock", "UnblockUser", new { userId = item.UserId })
+            </td>
+        </tr>
+    }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("ViewUserList",new { page}))

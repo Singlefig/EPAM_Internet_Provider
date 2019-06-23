@@ -7,6 +7,7 @@ using EPAM_Internet_Provider.Domain.Models;
 using System.Web.Mvc;
 using EPAM_Internet_Provider.Services;
 using System.IO;
+using PagedList;
 
 namespace EPAM_Internet_Provider.Controllers
 {
@@ -34,9 +35,39 @@ namespace EPAM_Internet_Provider.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> ServiceInfo(int id)
+        public async Task<ActionResult> ServiceInfo(int id, string sortOrder)
         {
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "RateName" : "";
+            ViewBag.CostSortParm = sortOrder == "RateCost" ? "RateCost" : "RateCost_Desc";
             var result = await _rateService.GetService(id);
+            switch (sortOrder)
+            {
+                case "RateName":
+                    {
+                        result.Rates = result.Rates.OrderBy(s => s.RateName).ToList();
+                    }
+                    break;
+                case "RateName_Desc":
+                    {
+                        result.Rates = result.Rates.OrderByDescending(s => s.RateName).ToList();
+                    }
+                    break;
+                case "RateCost":
+                    {
+                        result.Rates = result.Rates.OrderBy(s => s.RateCost).ToList();
+                    }
+                    break;
+                case "RateCost_Desc":
+                    {
+                        result.Rates = result.Rates.OrderByDescending(s => s.RateCost).ToList();
+                    }
+                    break;
+                default:
+                    {
+                        result.Rates.OrderBy(s => s.RateName);
+                    }
+                    break;
+            }
             return View(result);
         }
 

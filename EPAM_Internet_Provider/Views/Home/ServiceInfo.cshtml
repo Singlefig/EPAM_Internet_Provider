@@ -24,10 +24,10 @@
 <table class="table">
     <tr>
         <th>
-            RateName
+            @Html.ActionLink("Rate Name", "ServiceInfo", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
-            RateCost
+            @Html.ActionLink("Rate Cost", "ServiceInfo", new { sortOrder = ViewBag.CostSortParm })
         </th>
         <th></th>
     </tr>

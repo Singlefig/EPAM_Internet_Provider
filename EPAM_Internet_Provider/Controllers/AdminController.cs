@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
+using PagedList;
 
 namespace EPAM_Internet_Provider.Controllers
 {
@@ -78,7 +79,7 @@ namespace EPAM_Internet_Provider.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> ViewUserList()
+        public async Task<ActionResult> ViewUserList(int? page)
         {
             var result = await _accountService.ViewUsersList();
             List<UserInfo> usersInfo = new List<UserInfo>();
@@ -95,7 +96,9 @@ namespace EPAM_Internet_Provider.Controllers
                 };
                 usersInfo.Add(userInfo);
             }
-            return View(usersInfo);
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+            return View(usersInfo.ToPagedList(pageNumber,pageSize));
         }
 
         public async Task<ActionResult> GetServices()
