@@ -18,22 +18,6 @@ namespace EPAM_Internet_Provider.Controllers
         {
             _accountService = accountService;
         }
-        [HttpGet]
-        public ActionResult ResetPassword()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult ResetPassword(ResetPasswordModel resetPasswordModel)
-        {
-            if (String.Compare(resetPasswordModel.NewPassword, resetPasswordModel.ConfirmNewPassword) != 0)
-            {
-                ModelState.AddModelError("Password", "The password and confirmation password do not match");
-                return View(resetPasswordModel);
-            }
-            return View();
-        }
 
         [HttpGet]
         public ActionResult EditRatesDetails(List<Rate> rates)

@@ -133,10 +133,5 @@ namespace EPAM_Internet_Provider.Controllers
         {
             return View(rate);
         }
-
-        public ActionResult ResetPassword(UserInfo userInfo)
-        {
-            return View(userInfo);
-        }
     }
 }

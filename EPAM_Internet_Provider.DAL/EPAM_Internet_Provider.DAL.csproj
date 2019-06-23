@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Files\MDNetServicesAndRates.pdf" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -74,5 +75,6 @@
       <DependentUpon>201906171931428_AddDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

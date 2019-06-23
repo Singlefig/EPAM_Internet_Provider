@@ -6,6 +6,7 @@ using System.Web;
 using EPAM_Internet_Provider.Domain.Models;
 using System.Web.Mvc;
 using EPAM_Internet_Provider.Services;
+using System.IO;
 
 namespace EPAM_Internet_Provider.Controllers
 {
@@ -40,9 +41,11 @@ namespace EPAM_Internet_Provider.Controllers
         }
 
         [HttpGet]
-        public ActionResult Support()
+        public ActionResult DownloadServicesAndRatesFile()
         {
-            return View();
+            string file = @"C:\Users\singlefig-ap\Desktop\EPAM\FinalTask\EPAM_Internet_Provider\EPAM_Internet_Provider.DAL\Files\MDNetServicesAndRates.pdf";
+            string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            return File(file, contentType, Path.GetFileName(file));
         }
     }
 }
