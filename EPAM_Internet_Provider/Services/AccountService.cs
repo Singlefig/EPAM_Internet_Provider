@@ -15,6 +15,8 @@ namespace EPAM_Internet_Provider.Services
         Task<bool> IsEmailExist(string email);
         Task<IEnumerable<User>> ViewUsersList();
         Task UnsubscribeUser(int subId);
+        Task BlockUserByAdminSkill(int userId);
+        Task UnblockUserByAdminSkill(int userId);
     }
 
     public class AccountService : IAccountService
@@ -31,6 +33,11 @@ namespace EPAM_Internet_Provider.Services
             return _userDao.AddUser(user);
         }
 
+        public Task BlockUserByAdminSkill(int userId)
+        {
+            return _userDao.BlockUserByAdminSkill(userId);
+        }
+
         public Task<User> FindUserByEmail(string email)
         {
             return _userDao.FindUserByEmail(email);
@@ -44,6 +51,11 @@ namespace EPAM_Internet_Provider.Services
         public Task<bool> IsEmailExist(string email)
         {
             return _userDao.IsEmailExist(email);
+        }
+
+        public Task UnblockUserByAdminSkill(int userId)
+        {
+            return _userDao.UnblockUserByAdminSkill(userId);
         }
 
         public Task UnsubscribeUser(int subId)

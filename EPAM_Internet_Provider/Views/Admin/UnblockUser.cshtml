@@ -1,0 +1,84 @@
+﻿@model EPAM_Internet_Provider.Models.UserInfo
+
+@{
+    ViewBag.Title = "UnblockUser";
+}
+
+<h2>Unblock User</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Account)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Role)
+        </th>
+        <th></th>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.Account)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.Role)
+        </td>
+    </tr>
+
+    @if (Model.Subscributions != null && Model.Subscributions.Count > 0)
+    {
+            <tr>
+                <th>Service Name</th>
+                <th>Rates Name</th>
+                <th>Rates Cost</th>
+                <th>ServiceBalance</th>
+                <th>Blocked</th>
+                <th>Actions</th>
+            </tr>
+            foreach (var item in Model.Subscributions)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Service.ServiceName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SubscriptionRate.RateName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SubscriptionRate.RateCost)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ServiceBalance)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsBlocked)
+                    </td>
+                </tr>
+            }
+    }
+    else
+    {
+        <p>Subscription is empty</p>
+    }
+
+</table>
+@Html.ActionLink("Back to List","ViewUserList")

@@ -133,5 +133,37 @@ namespace EPAM_Internet_Provider.Controllers
         {
             return View(rate);
         }
+        [HttpGet]
+        public async Task<ActionResult> BlockUser(int userId)
+        {
+            var user = await _accountService.FindUserById(userId);
+            UserInfo userInfo = new UserInfo
+            {
+                UserId = user.UserId,
+                Email = user.Email,
+                Name = user.Name,
+                Role = user.Role,
+                Subscributions = user.Subscributions
+            };
+            var result = _accountService.BlockUserByAdminSkill(userId);
+            return View(userInfo);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> UnblockUser(int userId)
+        {
+            var user = await _accountService.FindUserById(userId);
+            UserInfo userInfo = new UserInfo
+            {
+                UserId = user.UserId,
+                Email = user.Email,
+                Name = user.Name,
+                Role = user.Role,
+                Subscributions = user.Subscributions
+            };
+            var result = _accountService.UnblockUserByAdminSkill(userId);
+            return View(userInfo);
+        }
+
     }
 }

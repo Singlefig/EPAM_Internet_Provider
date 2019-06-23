@@ -236,6 +236,8 @@
     <Content Include="Views\Manager\GetServices.cshtml" />
     <Content Include="Views\Manager\RateSuccess.cshtml" />
     <Content Include="Views\Client\ChargeService.cshtml" />
+    <Content Include="Views\Admin\BlockUser.cshtml" />
+    <Content Include="Views\Admin\UnblockUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

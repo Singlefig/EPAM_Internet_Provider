@@ -58,7 +58,7 @@ namespace EPAM_Internet_Provider.Services
             var userSubscription = user.Subscributions.FirstOrDefault(i => i.Service.ServiceId == serviceId);
             if (userSubscription == null)
             {
-                userSubscription = new Subscription {Service = await _rateDao.GetService(serviceId)};
+                userSubscription = new Subscription {Service = await _rateDao.GetService(serviceId),IsBlocked = true};
                 user.Subscributions.Add(userSubscription);
             }
             userSubscription.SubscriptionRate = userSubscription.Service.Rates.FirstOrDefault(i => i.RateId == rateId);

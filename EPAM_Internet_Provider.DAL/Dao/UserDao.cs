@@ -18,6 +18,8 @@ namespace EPAM_Internet_Provider.DAL.Dao
         Task UpdateUser(User user);
         Task<IEnumerable<User>> ViewUsersList();
         Task UnsubscribeUser(int subId);
+        Task BlockUserByAdminSkill(int userId);
+        Task UnblockUserByAdminSkill(int userId);
     }
 
     public class UserDao : IUserDao
@@ -72,6 +74,28 @@ namespace EPAM_Internet_Provider.DAL.Dao
             _context.Subscriptions.Remove(result);
             _context.SaveChanges();
             return Task.FromResult(result);
+        }
+
+        public Task BlockUserByAdminSkill(int userId)
+        {
+            var user = _context.Users.Find(userId);
+            foreach (var sub in user.Subscributions)
+            {
+                sub.IsBlocked = true;
+            }
+            _context.SaveChanges();
+            return Task.FromResult(user);
+        }
+
+        public Task UnblockUserByAdminSkill(int userId)
+        {
+            var user = _context.Users.Find(userId);
+            foreach (var sub in user.Subscributions)
+            {
+                sub.IsBlocked = false;
+            }
+            _context.SaveChanges();
+            return Task.FromResult(user);
         }
     }
 }

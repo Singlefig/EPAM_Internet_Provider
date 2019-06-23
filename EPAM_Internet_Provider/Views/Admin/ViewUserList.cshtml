@@ -44,9 +44,8 @@
             @Html.DisplayFor(modelItem => item.Role)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Block", "BlockUser", new { userId=item.UserId }) |
+            @Html.ActionLink("Unblock", "UnblockUser", new { userId = item.UserId })
         </td>
     </tr>
 }
