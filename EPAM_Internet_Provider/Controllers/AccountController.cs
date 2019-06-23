@@ -75,13 +75,13 @@ namespace EPAM_Internet_Provider.Controllers
                 var user = await _accountService.FindUserByEmail(userModel.Email);
                 if (user == null)
                 {
-                    ModelState.AddModelError("EmailExist", "Email doesn't exist");
+                    ModelState.AddModelError("Email", "Email doesn't exist");
                     return View(userModel);
                 }
                 string pass = Crypto.Hash(userModel.Password);
                 if (String.Compare(pass, user.Password, StringComparison.Ordinal) != 0)
                 {
-                    ModelState.AddModelError("Wrong password", "Password is not correct");
+                    ModelState.AddModelError("Password", "Password is not correct");
                     return View(userModel);
                 }
                 FormsAuthentication.SetAuthCookie(userModel.Email, userModel.RememberMe);
@@ -104,7 +104,6 @@ namespace EPAM_Internet_Provider.Controllers
             {
                 HttpContext.Session["UserId"] = user.UserId;
             }
-
             if (user.Role == "Admin")
                 return RedirectToAction("Index", "Admin");
 

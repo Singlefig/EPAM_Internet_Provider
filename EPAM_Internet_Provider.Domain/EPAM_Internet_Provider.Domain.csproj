@@ -55,9 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Crypto.cs" />
-    <Compile Include="Infrastructure\AppRoleManager.cs" />
-    <Compile Include="Models\AppRole.cs" />
-    <Compile Include="Models\ProblemMessage.cs" />
     <Compile Include="Models\Rate.cs" />
     <Compile Include="Models\RoleType.cs" />
     <Compile Include="Models\Service.cs" />

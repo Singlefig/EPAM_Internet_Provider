@@ -16,7 +16,6 @@ namespace EPAM_Internet_Provider.Domain.Models
         }
 
         [Key]
-//        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
 
         [Required]
