@@ -62,6 +62,15 @@ namespace EPAM_Internet_Provider.DAL.Dao
         {
             var result = await FindSubscribeByUserId(subscriptionId);
             result.ServiceBalance += balance;
+            result.ServiceBalance -= result.SubscriptionRate.RateCost;
+            if(result.ServiceBalance > 0)
+            {
+                result.IsBlocked = false;
+            }
+            else
+            {
+                result.IsBlocked = true;
+            }
             _context.SaveChanges();
             return await Task.FromResult(result);
         }

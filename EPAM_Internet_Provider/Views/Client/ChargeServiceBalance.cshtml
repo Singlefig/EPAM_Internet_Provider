@@ -30,7 +30,8 @@
         @Html.EditorFor(model => model.ServiceBalance)
     </div>
     <div class="form-actions no-color">
-        @Html.ActionLink("Charge", "ChargeService", new { subId = Model.SubscriptionId, balance = Model.ServiceBalance })
+        <input type="submit" value="Charge" class="btn btn-default">
+        @*@Html.ActionLink("Charge", "ChargeService", new { subId = Model.SubscriptionId,balance = Model.ServiceBalance})*@
     </div>
 </div>
 }

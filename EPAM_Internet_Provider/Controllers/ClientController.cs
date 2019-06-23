@@ -30,11 +30,6 @@ namespace EPAM_Internet_Provider.Controllers
 
         public async Task<ActionResult> Index()
         {
-            //            if (WebSecurity.IsAuthenticated)
-            //            {
-            //                //Accesses the username
-            //                string currentUserName = WebSecurity.CurrentUserName;
-            //            }
             int userId = (int)HttpContext.Session["UserId"];
             var user = await _accountService.FindUserById(userId);
             var userInfo = new UserInfo
@@ -54,11 +49,6 @@ namespace EPAM_Internet_Provider.Controllers
         public async Task<ActionResult> AddSubscription()
         {
             var result = await _rateService.GetAllServices();
-            //            var info = new AddSubscriptionInfo
-            //            {
-            //                UserId = userId,
-            //                AvilableServices = result
-            //            };
             return View(result);
         }
 
@@ -79,21 +69,15 @@ namespace EPAM_Internet_Provider.Controllers
         }
 
         [HttpGet]
-        public ActionResult ChargeServiceBalance(Subscription subscription)
+        public async Task<ActionResult> ChargeServiceBalance(int subId)
         {
-            var sub = _rateService.FindSubscribeBySubId(subscription.SubscriptionId);
-            return View(subscription);
+            var sub = await _rateService.FindSubscribeBySubId(subId);
+            return View(sub);
         }
-        [HttpGet]
-        public ActionResult ChargeService()
-        {
-            return View();
-        }
-
         [HttpPost]
-        public ActionResult ChargeService(Subscription sub)
+        public ActionResult ChargeServiceBalance(int subId,Subscription subscription)
         {
-            var result = _rateService.ChargeSubscribe(sub.SubscriptionId, sub.ServiceBalance);
+            var result = _rateService.ChargeSubscribe(subId,subscription.ServiceBalance);
             return RedirectToAction("Index");
         }
 

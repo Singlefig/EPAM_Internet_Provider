@@ -86,15 +86,6 @@ namespace EPAM_Internet_Provider.Controllers
                 }
                 FormsAuthentication.SetAuthCookie(userModel.Email, userModel.RememberMe);
                 return RedirectByRole(user);
-//                if (user.Role == "Admin")
-//                    return RedirectToAction("AdminAccountPage", user);
-//                if (user.Role == "Manager")
-//                    return RedirectToAction("ManagerAccountPage", user);
-//                if (user.Role == "Client")
-//                    return RedirectToAction("ClientAccountPage", user);
-//
-//                ViewBag.Message = "Invalid Role";
-//                return View(userModel);
             }
             ViewBag.Message = "Invalid Request";
             return View(userModel);
@@ -126,61 +117,5 @@ namespace EPAM_Internet_Provider.Controllers
             ViewBag.Message = "Invalid Role";
             return View(user);
         }
-
-//        //[Authorize(Roles ="Admin")]
-//        public ActionResult AdminAccountPage(User user)
-//        {
-//            return View(user);
-//        }
-//        //[Authorize(Roles = "Client")]
-//        public ActionResult ClientAccountPage(User user)
-//        {
-//            return View(user);
-//        }
-//        //[Authorize(Roles = "Manager")]
-//        public ActionResult ManagerAccountPage(User user)
-//        {
-//            return View(user);
-//        }
-//
-//        public ActionResult ResetPassword(User user)
-//        {
-//            return View(user);
-//        }
-//
-//        public ActionResult AddUserAdminSkill()
-//        {
-//            return View();
-//        }
-//
-//        public ActionResult ServiceList()
-//        {
-//            return View();
-//        }
-//
-//        public ActionResult RatesDetails(Rate rate)
-//        {
-//            return View(rate);
-//        }
-//
-//        public ActionResult ChargeServiceBalance(User user)
-//        {
-//            return View(user.Subscributions);
-//        }
-//
-//        public ActionResult ChooseAnotherRate(User user)
-//        {
-//            return View(user.Subscributions);
-//        }
-//
-//        public ActionResult UnsubscribeFromRate(User user)
-//        {
-//            return View(user.Subscributions);
-//        }
-        //[HttpPost]
-        //public ActionResult AccountPage(User registerModel)
-        //{
-        //    return View(registerModel);
-        //}
     }
 }

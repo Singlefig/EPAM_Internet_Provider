@@ -119,9 +119,6 @@ namespace EPAM_Internet_Provider.Controllers
         [HttpPost]
         public ActionResult EditRateDetails(Rate rate,int rateId)
         {
-            //ViewBag.rateName = rate.RateName;
-            //ViewBag.rateCost = rate.RateCost;
-            //ViewBag.rateId = rate.RateId;
             var NewRate = new Rate
             {
                 RateName = rate.RateName,
