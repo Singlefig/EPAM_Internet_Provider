@@ -22,17 +22,28 @@ namespace EPAM_Internet_Provider.Controllers
             _accountService = accountService;
             _rateService = rateService;
         }
+        /// <summary>
+        /// Admin Account page
+        /// </summary>
+        /// <param name="userinfo"></param>
+        /// <returns></returns>
         public ActionResult Index(UserInfo userinfo)
         {
             return View(userinfo);
         }
-
+        /// <summary>
+        /// Get method for admin skill add user
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult AddUserByAdminSkill()
         {
             return View();
         }
-
+        /// <summary>
+        /// Post method for admin skill add user
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> AddUserByAdminSkill(RegisterModel registerModel)
         {
@@ -71,13 +82,21 @@ namespace EPAM_Internet_Provider.Controllers
             ViewBag.Message = "Invalid Request";
             return View(registerModel);
         }
-
+        /// <summary>
+        /// Get method for redirecting to page when adding user was successful
+        /// </summary>
+        /// <param name="userInfo"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult RedirectToSuccess(UserInfo userInfo)
         {
             return View(userInfo);
         }
-
+        /// <summary>
+        /// Get method for list of users page
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> ViewUserList(int? page)
         {
@@ -100,25 +119,41 @@ namespace EPAM_Internet_Provider.Controllers
             int pageNumber = (page ?? 1);
             return View(usersInfo.ToPagedList(pageNumber,pageSize));
         }
-
+        /// <summary>
+        /// Get method for list of services 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public async Task<ActionResult> GetServices()
         {
             var result = await _rateService.GetAllServices();
             return View(result);
         }
-
+        /// <summary>
+        /// Get method for list of rates of current service
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> GetServiceInfo(int serviceId)
         {
             var result = await _rateService.GetService(serviceId);
             return View(result);
         }
+        /// <summary>
+        /// Get method for edit rate
+        /// </summary>
+        /// <param name="rateId"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult EditRateDetails(int rateId)
         {
             return View();
         }
-
+        /// <summary>
+        /// Post method for edit rate
+        /// </summary>
+        /// <param name="rateId"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult EditRateDetails(Rate rate,int rateId)
         {
@@ -131,11 +166,21 @@ namespace EPAM_Internet_Provider.Controllers
             var result = _rateService.EditRateById(rate.RateId,rate.RateName,rate.RateCost);
             return RedirectToAction("RateSuccess", NewRate);
         }
+        /// <summary>
+        /// Get method to view changed rate when it was successful
+        /// </summary>
+        /// <param name="rate"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult RateSuccess(Rate rate)
         {
             return View(rate);
         }
+        /// <summary>
+        /// Get method to block user subscribes by admin skill
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> BlockUser(int userId)
         {
@@ -151,7 +196,11 @@ namespace EPAM_Internet_Provider.Controllers
             var result = _accountService.BlockUserByAdminSkill(userId);
             return View(userInfo);
         }
-
+        /// <summary>
+        /// Get method to unblock user subscribes by admin skill
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> UnblockUser(int userId)
         {
@@ -167,6 +216,5 @@ namespace EPAM_Internet_Provider.Controllers
             var result = _accountService.UnblockUserByAdminSkill(userId);
             return View(userInfo);
         }
-
     }
 }

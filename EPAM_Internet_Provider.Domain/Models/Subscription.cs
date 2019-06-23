@@ -9,6 +9,9 @@ namespace EPAM_Internet_Provider.Domain.Models
 {
     public class Subscription
     {
+        /// <summary>
+        /// Model of subscribe
+        /// </summary>
         [Key]
         public int SubscriptionId { get; set; }
 

@@ -9,6 +9,9 @@ namespace EPAM_Internet_Provider.Domain.Models
 {
     public class Rate
     {
+        /// <summary>
+        /// Model of rate
+        /// </summary>
         [Key]
         public int RateId { get; set; }
 

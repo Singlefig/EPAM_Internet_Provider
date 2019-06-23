@@ -8,6 +8,9 @@ namespace EPAM_Internet_Provider.Models
 {
     public class RegisterModel
     {
+        /// <summary>
+        /// Model for signUp method in account controller
+        /// </summary>
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

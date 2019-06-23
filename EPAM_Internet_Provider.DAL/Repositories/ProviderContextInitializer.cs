@@ -12,7 +12,10 @@ namespace EPAM_Internet_Provider.DAL.Repositories
         {
 
         }
-
+        /// <summary>
+        /// Method to populate Users table in Database 
+        /// </summary>
+        /// <param name="context"></param>
         private void SeedUsers(ProviderContext context)
         {
             var users = new List<User>()
@@ -48,7 +51,10 @@ namespace EPAM_Internet_Provider.DAL.Repositories
             .ForEach(i=> context.Users.Add(i));
             context.SaveChanges();
         }
-
+        /// <summary>
+        /// Method to populate Database 
+        /// </summary>
+        /// <param name="context"></param>
         protected override void Seed(ProviderContext context)
         {
             SeedUsers(context);

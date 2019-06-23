@@ -9,6 +9,9 @@ namespace EPAM_Internet_Provider.Domain.Models
 {
     public class Service
     {
+        /// <summary>
+        /// Model of service
+        /// </summary>
         [Key]
         public int ServiceId { get; set; }
 

@@ -7,7 +7,6 @@ namespace EPAM_Internet_Provider.DAL.Repositories
     {
         static ProviderContext()
         {
-//            Database.SetInitializer(new CreateDatabaseIfNotExists<ProviderContext>());
             Database.SetInitializer(new ProviderContextInitializer());
         }
         public ProviderContext() : base("ProviderDB")
@@ -17,6 +16,12 @@ namespace EPAM_Internet_Provider.DAL.Repositories
         public ProviderContext(string ProviderContext) : base(ProviderContext)
         {
         }
+        /// <summary>
+        /// Users - table of users in Database
+        /// Rates - table of rates in Database
+        /// Servces - table of services in Database
+        /// Subscribes - table of subscribes in Database
+        /// </summary>
         public IDbSet<User> Users { get; set; }
         public IDbSet<Rate> Rates { get; set; }
         public IDbSet<Service> Services { get; set; }

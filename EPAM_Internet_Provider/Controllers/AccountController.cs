@@ -18,14 +18,21 @@ namespace EPAM_Internet_Provider.Controllers
         {
             _accountService = accountService;
         }
-
+        /// <summary>
+        /// Get Method for SignUp
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpGet]
         public ActionResult SignUp()
         {
             return View();
         }
-
+        /// <summary>
+        /// Post Method for SignUp
+        /// </summary>
+        /// <param name="registerModel"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult> SignUp(RegisterModel registerModel)
@@ -57,14 +64,22 @@ namespace EPAM_Internet_Provider.Controllers
             ViewBag.Message = "Invalid Request";
             return View(registerModel);
         }
-
+        /// <summary>
+        /// Get Method for SignIn
+        /// </summary>
+        /// <param name="registerModel"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpGet]
         public ActionResult SignIn()
         {
             return View();
         }
-
+        /// <summary>
+        /// Post Method for SignIn
+        /// </summary>
+        /// <param name="registerModel"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult> SignIn(LoginModel userModel)
@@ -90,14 +105,22 @@ namespace EPAM_Internet_Provider.Controllers
             ViewBag.Message = "Invalid Request";
             return View(userModel);
         }
-
+        /// <summary>
+        /// Get Method for SignOut
+        /// </summary>
+        /// <param name="registerModel"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult SignOut()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index","Home");
         }
-
+        /// <summary>
+        /// Method for checking role and redirecring by role on account page
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         private ActionResult RedirectByRole(User user)
         {
             if (HttpContext.Session["UserId"] == null)

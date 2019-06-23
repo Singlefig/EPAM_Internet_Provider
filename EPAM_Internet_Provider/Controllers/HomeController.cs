@@ -20,20 +20,29 @@ namespace EPAM_Internet_Provider.Controllers
         {
             _rateService = service;
         }
-
+        /// <summary>
+        /// Get method to view landing page
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
-
+        /// <summary>
+        /// Get method to view service list
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> Services()
         {
             var result = await _rateService.GetAllServices();
             return View(result);
         }
-
+        /// <summary>
+        /// Get method to view rate list for current services
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult> ServiceInfo(int id, string sortOrder)
         {
@@ -70,7 +79,10 @@ namespace EPAM_Internet_Provider.Controllers
             }
             return View(result);
         }
-
+        /// <summary>
+        /// Get method to download service and rate file from server
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult DownloadServicesAndRatesFile()
         {

@@ -33,7 +33,9 @@ namespace EPAM_Internet_Provider.Infrastructure
         {
             return kernel.GetAll(serviceType);
         }
-
+        /// <summary>
+        /// Bindings for current project
+        /// </summary>
         private void AddBindings()
         {
             kernel.Bind<ProviderContext>().To<ProviderContext>().InSingletonScope();

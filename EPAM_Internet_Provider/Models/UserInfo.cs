@@ -9,6 +9,9 @@ namespace EPAM_Internet_Provider.Models
 {
     public class UserInfo
     {
+        /// <summary>
+        /// Model for viewing user info on application
+        /// </summary>
         [Required]
         public int UserId { get; set; }
 

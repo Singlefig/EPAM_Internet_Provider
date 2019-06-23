@@ -10,6 +10,9 @@ namespace EPAM_Internet_Provider.Domain.Models
 {
     public class User
     {
+        /// <summary>
+        /// Model of user
+        /// </summary>
         public User()
         {
             this.Subscributions = new HashSet<Subscription>();

@@ -8,6 +8,11 @@ namespace EPAM_Internet_Provider.Domain
 {
     public static class Crypto
     {
+        /// <summary>
+        /// Method to hashing password
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static string Hash(string value)
         {
             return Convert.ToBase64String(

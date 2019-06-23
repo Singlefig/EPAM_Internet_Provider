@@ -163,7 +163,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
-    <Compile Include="Controllers\GeneralController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Global.asax.cs">
@@ -171,9 +170,7 @@
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\ProblemMessage.cs" />
     <Compile Include="Models\RegisterModel.cs" />
-    <Compile Include="Models\ResetPasswordModel.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />
@@ -220,9 +217,7 @@
     <Content Include="Views\Manager\Index.cshtml" />
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Admin\AddUserByAdminSkill.cshtml" />
-    <Content Include="Views\General\ServiceList.cshtml" />
     <Content Include="Views\Client\ChargeServiceBalance.cshtml" />
-    <Content Include="Views\Client\ChooseAnotherRate.cshtml" />
     <Content Include="Views\Client\Unsubscribe.cshtml" />
     <Content Include="Views\Admin\RedirectToSuccess.cshtml" />
     <Content Include="Views\Home\Services.cshtml" />
