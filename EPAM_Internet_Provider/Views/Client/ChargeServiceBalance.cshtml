@@ -28,6 +28,7 @@
 
     <div class="form-group">
         @Html.EditorFor(model => model.ServiceBalance)
+        @Html.ValidationMessageFor(model => model.ServiceBalance, "", new { @class = "text-danger" })
     </div>
     <div class="form-actions no-color">
         <input type="submit" value="Charge" class="btn btn-default">

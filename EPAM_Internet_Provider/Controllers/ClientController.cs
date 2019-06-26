@@ -101,8 +101,17 @@ namespace EPAM_Internet_Provider.Controllers
         [HttpPost]
         public ActionResult ChargeServiceBalance(int subId,Subscription subscription)
         {
-            var result = _rateService.ChargeSubscribe(subId,subscription.ServiceBalance);
-            return RedirectToAction("Index");
+            if(subscription.ServiceBalance > 0)
+            {
+                var result = _rateService.ChargeSubscribe(subId, subscription.ServiceBalance);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ModelState.AddModelError("ServiceBalance", "Balance can't be below zero");
+                return View(subscription);
+            }
+            
         }
         /// <summary>
         /// Get method to unsubscribe 
